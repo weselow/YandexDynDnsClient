@@ -1,3 +1,4 @@
+![This is an image](/Sicons-Basic-Round-Social-Yandex.ico)
 # Yandex Dynamic Dns Client
 
 Легкий клиент для автоматического обновления динамического ip-адреса домена или поддомена в [Яндекс.Коннект](https://connect.yandex.ru).
