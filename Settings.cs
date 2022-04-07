@@ -13,6 +13,7 @@ namespace YandexDynDnsClient
         public string Subdomain { get; set; } = string.Empty;
         public int Ttl { get; set; } = 14400;
         public int RecordId { get; set; }
-        public string Token { get; set; } = string.Empty;       
+        public string Token { get; set; } = string.Empty;
+        public string CheckExternalIpUrl { get; set; } = "http://api.ipify.org";
     }
 }

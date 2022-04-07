@@ -12,9 +12,7 @@ if (string.IsNullOrEmpty(sd.Domain))
 {
     Console.WriteLine($"No settings - creating file {Path.GetFileName(file)} ...");
     Console.WriteLine("Please, fill data in!");
-    SaveSettings();
-    Console.ReadKey();
-    return;
+    AskSettings();
 }
 
 HttpClient client = new HttpClient();
@@ -77,7 +75,41 @@ else
 SaveSettings();
 Console.WriteLine("Finish!");
 
+bool AskSettings()
+{
+    bool ifDone = false;
 
+    while (!ifDone)
+    {
+        Console.WriteLine();
+        Console.WriteLine("Starting setup wizard ...");
+        Console.Write("Enter domain (e.g. \"example.com\"): ");
+        sd.Domain = Console.ReadLine() ?? "";
+        Console.WriteLine();
+
+        Console.Write("Enter subdomain if needed (e.g. \"home\" from \"home.example.com\"): ");
+        sd.Subdomain = Console.ReadLine() ?? "";
+        Console.WriteLine();
+
+        Console.Write($"Enter TTL (default is {sd.Ttl}): ");
+        var tmp = Console.ReadLine() ?? "";
+        if (!string.IsNullOrEmpty(tmp)) sd.Ttl = Convert.ToInt32(tmp);
+        Console.WriteLine();
+
+        Console.Write("Enter Yandex Token : ");
+        sd.Token = Console.ReadLine() ?? "";
+        Console.WriteLine();
+
+        Console.WriteLine("Is these settings correct? (y/n): ");
+        var k = Console.ReadKey();
+
+        if (k.Key == ConsoleKey.Y) { ifDone = true; }
+        else { Console.WriteLine("Running wizard again ...");  }
+        Console.WriteLine();
+    }
+
+    return true;
+}
 
 
 SettingsData LoadSettings()
@@ -116,7 +148,7 @@ string GetIp()
     string ip = string.Empty;
     try
     {
-        ip = client.GetStringAsync("http://api.ipify.org").Result;
+        ip = client.GetStringAsync(sd.CheckExternalIpUrl).Result;
     }
     catch (Exception e)
     {
