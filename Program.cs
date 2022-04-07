@@ -101,6 +101,15 @@ bool AskSettings()
         Console.WriteLine();
 
         Console.WriteLine("Is these settings correct? (y/n): ");
+        Console.WriteLine($@"Settings:
+- domain: {sd.Domain},
+- subdomain: {sd.Subdomain}
+- token: {sd.Token}
+- TTL: {sd.Ttl} sec
+- recordID: {sd.RecordId}
+- last ip: {sd.LastIp}
+- check external ip url: {sd.CheckExternalIpUrl}
+");
         var k = Console.ReadKey();
 
         if (k.Key == ConsoleKey.Y) { ifDone = true; }
