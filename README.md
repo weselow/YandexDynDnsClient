@@ -19,7 +19,7 @@
 
 
 ## Releases
-Скачать скомплированную версию можно тут: https://github.com/weselow/YandexDynDnsClient/releases/tag/1.0
+Скачать скомплированную версию можно в разделе Releases: https://github.com/weselow/YandexDynDnsClient/releases
 
 
 ## Ссылки
